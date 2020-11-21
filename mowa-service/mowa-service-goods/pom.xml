@@ -11,5 +11,12 @@
 
     <artifactId>mowa-service-goods</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.mowa</groupId>
+            <artifactId>mowa-service-goods-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>
