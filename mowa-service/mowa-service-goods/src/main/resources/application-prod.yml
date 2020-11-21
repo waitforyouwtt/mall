@@ -10,6 +10,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://81.68.86.66:3306/mall_goods?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    #cloud 服务器
     username: root
     password: yunlan
   # 格式化日期

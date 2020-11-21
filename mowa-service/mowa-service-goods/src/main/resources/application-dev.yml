@@ -9,9 +9,10 @@ spring:
   #数据库连接池
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://81.68.86.66:3306/mall_goods?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://127.0.0.1:3306/mall_goods?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    #HOME PC
     username: root
-    password: yunlan
+    password: root
   # 格式化日期
   jackson:
     time-zone: GMT+8
