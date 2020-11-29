@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -21,7 +22,7 @@ import java.util.List;
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
-    @Autowired
+    @Resource
     private CategoryMapper categoryMapper;
 
 
@@ -159,5 +160,19 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<Category> findAll() {
         return categoryMapper.selectAll();
+    }
+
+    /**
+     * 根据父级编码查询分类
+     *
+     * @param pid
+     * @return
+     */
+    @Override
+    public List<Category> findByParentId(String pid) {
+        Example example=new Example(Category.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo( "parentId",pid );
+        return categoryMapper.selectByExample( example );
     }
 }

@@ -2,14 +2,18 @@ package com.mowa.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.mowa.dao.CategoryMapper;
 import com.mowa.dao.SpecMapper;
+import com.mowa.goods.pojo.Category;
 import com.mowa.goods.pojo.Spec;
+import com.mowa.service.CategoryService;
 import com.mowa.service.SpecService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -21,9 +25,11 @@ import java.util.List;
 @Service
 public class SpecServiceImpl implements SpecService {
 
-    @Autowired
+    @Resource
     private SpecMapper specMapper;
 
+    @Resource
+    CategoryMapper categoryMapper;
 
     /**
      * Spec条件+分页查询
@@ -147,5 +153,19 @@ public class SpecServiceImpl implements SpecService {
     @Override
     public List<Spec> findAll() {
         return specMapper.selectAll();
+    }
+
+    /**
+     * 根据分类id查询spec
+     *
+     * @param categoryId
+     * @return
+     */
+    @Override
+    public List<Spec> findByCategoryId(String categoryId) {
+        Category category = categoryMapper.selectByPrimaryKey( categoryId );
+        Spec spec = new Spec();
+        spec.setTemplateId( category.getTemplateId() );
+        return specMapper.select( spec );
     }
 }

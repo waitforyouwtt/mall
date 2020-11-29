@@ -61,4 +61,9 @@ public class BrandController {
         return Result.success( brandService.findPage(pageNum,pageSize, brand) );
     }
 
+    @GetMapping("/category/{categoryId}")
+    public Result findByCategoryId(@PathVariable ("categoryId") int categoryId){
+        return Result.success( brandService.findByCategoryId(categoryId) );
+    }
+
 }

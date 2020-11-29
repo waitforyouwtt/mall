@@ -1,6 +1,7 @@
 package com.mowa.service;
 
 import com.github.pagehelper.PageInfo;
+import com.mowa.goods.pojo.Goods;
 import com.mowa.goods.pojo.Sku;
 
 import java.util.List;
@@ -67,4 +68,17 @@ public interface SkuService {
      * @return
      */
     List<Sku> findAll();
+
+    /**
+     * 创建商品
+     * @param goods
+     */
+    void saveGoods(Goods goods);
+
+    /**
+     * 根据spuId查询商品信息
+     * @param spuId
+     * @return
+     */
+    Goods findGoodsBySpuId(String spuId);
 }

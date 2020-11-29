@@ -118,6 +118,17 @@ public class BrandServiceImpl implements BrandService {
         return new PageInfo<>( brandMapper.selectByExample( example ) );
     }
 
+    /**
+     * 根据分类id 查询品牌集合
+     *
+     * @param categoryId
+     * @return
+     */
+    @Override
+    public List<Brand> findByCategoryId(int categoryId) {
+        return brandMapper.findByCategoryId(categoryId);
+    }
+
     protected Example createExample(Brand brand){
         Example example = new Example(Brand.class);
         Example.Criteria criteria = example.createCriteria();

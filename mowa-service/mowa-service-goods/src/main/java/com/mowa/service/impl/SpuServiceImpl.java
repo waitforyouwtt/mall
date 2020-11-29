@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -215,5 +216,79 @@ public class SpuServiceImpl implements SpuService {
     @Override
     public List<Spu> findAll() {
         return spuMapper.selectAll();
+    }
+
+    /**
+     * 审核商品
+     *
+     * @param spuId
+     */
+    @Override
+    public void audit(String spuId) {
+        Spu spu = spuMapper.selectByPrimaryKey( spuId );
+        if (spu.getIsDelete().equalsIgnoreCase( "1" )){
+            throw new RuntimeException( "不能对已删除的商品进行审核" );
+        }
+        //审核通过 & 上架
+        spu.setStatus( "1" );
+        spu.setIsMarketAble( "1" );
+        spuMapper.updateByPrimaryKeySelective( spu );
+    }
+
+    /**
+     * 上架商品
+     *
+     * @param spuId
+     */
+    @Override
+    public void put(String spuId) {
+        Spu spu = spuMapper.selectByPrimaryKey( spuId );
+        if (spu.getIsDelete().equalsIgnoreCase( "1" )){
+            throw new RuntimeException( "不能对已删除的商品进行上架" );
+        }
+        if (!spu.getStatus().equalsIgnoreCase( "1" )){
+            throw new RuntimeException( "未通过审核的商品不能进行上架" );
+        }
+        //上架
+        spu.setIsMarketAble( "1" );
+        spuMapper.updateByPrimaryKeySelective( spu );
+    }
+
+    /**
+     * 下架商品
+     *
+     * @param spuId
+     */
+    @Override
+    public void pull(String spuId) {
+        Spu spu = spuMapper.selectByPrimaryKey( spuId );
+        if (spu.getIsDelete().equalsIgnoreCase( "1" )){
+            throw new RuntimeException( "不能对已删除的商品进行下架" );
+        }
+        //下架
+        spu.setIsMarketAble( "0" );
+        spuMapper.updateByPrimaryKeySelective( spu );
+    }
+
+    /**
+     * 上架商品
+     *
+     * @param spuIds
+     */
+    @Override
+    public void putMany(String[] spuIds) {
+        Example example = new Example( Spu.class );
+        Example.Criteria criteria = example.createCriteria();
+
+        criteria.andIn( "id", Arrays.asList(spuIds) );
+        //未删除
+        criteria.andEqualTo( "isDelete","0" );
+        //已审核
+        criteria.andEqualTo( "status","1" );
+
+        Spu spu = new Spu();
+        //上架
+        spu.setIsMarketAble( "1" );
+        spuMapper.updateByExampleSelective( spu,example );
     }
 }

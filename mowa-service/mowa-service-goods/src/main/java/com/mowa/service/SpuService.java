@@ -67,4 +67,24 @@ public interface SpuService {
      * @return
      */
     List<Spu> findAll();
+
+    /**
+     * 审核商品
+     */
+    void audit(String spuId);
+
+    /**
+     * 上架商品
+     */
+    void put(String spuId);
+
+    /**
+     * 下架商品
+     */
+    void pull(String spuId);
+
+    /**
+     * 上架商品
+     */
+    void putMany(String[] spuIds);
 }

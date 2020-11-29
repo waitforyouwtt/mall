@@ -20,7 +20,6 @@ public class Sku implements Serializable {
     @ApiModelProperty(value = "商品id")
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     @ApiModelProperty(value = "商品条码")

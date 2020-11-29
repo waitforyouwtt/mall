@@ -19,8 +19,7 @@ public class Spu implements Serializable {
     @ApiModelProperty(value = "分类id")
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private String id;
 
     @ApiModelProperty(value = "货号")
     @Column(name = "sn")
@@ -91,7 +90,7 @@ public class Spu implements Serializable {
     private Integer commentNum;
 
     @ApiModelProperty(value = "是否上架")
-    @Column(name = "is_market_able")
+    @Column(name = "is_marketable")
     private String isMarketAble;
 
     @ApiModelProperty(value = "是否启用规格")

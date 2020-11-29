@@ -2,7 +2,9 @@ package com.mowa.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.mowa.dao.CategoryMapper;
 import com.mowa.dao.ParaMapper;
+import com.mowa.goods.pojo.Category;
 import com.mowa.goods.pojo.Para;
 import com.mowa.service.ParaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -23,6 +26,9 @@ public class ParaServiceImpl implements ParaService {
 
     @Autowired
     private ParaMapper paraMapper;
+
+    @Resource
+    private CategoryMapper categoryMapper;
 
 
     /**
@@ -147,5 +153,19 @@ public class ParaServiceImpl implements ParaService {
     @Override
     public List<Para> findAll() {
         return paraMapper.selectAll();
+    }
+
+    /**
+     * 根据分类id 查询所有参数
+     *
+     * @param categoryId
+     * @return
+     */
+    @Override
+    public List<Para> findCategoryId(String categoryId) {
+        Category category = categoryMapper.selectByPrimaryKey( categoryId );
+        Para para = new Para();
+        para.setTemplateId( category.getTemplateId() );
+        return paraMapper.select( para );
     }
 }
