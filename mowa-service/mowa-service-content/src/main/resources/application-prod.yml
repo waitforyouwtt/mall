@@ -1,0 +1,39 @@
+#服务端口
+server:
+  port: 8003
+
+spring:
+  #应用名称
+  application:
+    name: goods
+  #数据库连接池
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://81.68.86.66:3306/mall_content?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    #cloud 服务器
+    username: root
+    password: yunlan
+  # 格式化日期
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+
+#mybabtis 配置
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  type-aliases-package: com.mowa.content.pojo
+
+#注册中心地址[多个配置中心，中间用逗号分开]
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/ # ,http://127.0.0.1:8762/eureka/
+  instance:
+    prefer-ip-address: true
+
+#远程调用配置
+feign:
+  hystrix:
+    enabled: true

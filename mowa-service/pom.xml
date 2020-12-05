@@ -18,6 +18,7 @@
     <modules>
         <module>mowa-service-goods</module>
         <module>mowa-service-file</module>
+        <module>mowa-service-content</module>
     </modules>
 
     <dependencies>

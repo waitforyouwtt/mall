@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="mowa-eureka" />
+        <module name="mowa-service-content-api" />
+        <module name="mowa-service-file" />
+        <module name="mowa-common-db" />
+        <module name="mowa-service-content" />
+        <module name="mowa-service-goods" />
+        <module name="mowa-common" />
+        <module name="mowa-service-goods-api" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="mall-web" target="1.8" />
+      <module name="mowa" target="1.8" />
+      <module name="mowa-common" target="1.8" />
+      <module name="mowa-common-db" target="1.8" />
+      <module name="mowa-eureka" target="1.8" />
+      <module name="mowa-gateway" target="1.8" />
+      <module name="mowa-service" target="1.8" />
+      <module name="mowa-service-api" target="1.8" />
+      <module name="mowa-service-content" target="1.8" />
+      <module name="mowa-service-content-api" target="1.8" />
+      <module name="mowa-service-file" target="1.8" />
+      <module name="mowa-service-goods" target="1.8" />
+      <module name="mowa-service-goods-api" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="mowa-common" options="-parameters" />
+      <module name="mowa-common-db" options="-parameters" />
+      <module name="mowa-eureka" options="-parameters" />
+      <module name="mowa-service-content" options="-parameters" />
+      <module name="mowa-service-content-api" options="-parameters" />
+      <module name="mowa-service-file" options="-parameters" />
+      <module name="mowa-service-goods" options="-parameters" />
+      <module name="mowa-service-goods-api" options="-parameters" />
+    </option>
+  </component>
+</project>

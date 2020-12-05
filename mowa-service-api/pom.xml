@@ -17,6 +17,7 @@
     </description>
     <modules>
         <module>mowa-service-goods-api</module>
+        <module>mowa-service-content-api</module>
     </modules>
 
     <dependencies>

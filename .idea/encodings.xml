@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/mowa-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mowa-eureka/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mowa-service-api/mowa-service-content-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mowa-service-api/mowa-service-goods-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mowa-service/mowa-service-content/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mowa-service/mowa-service-file/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mowa-service/mowa-service-goods/src/main/java" charset="UTF-8" />
+  </component>
+</project>
