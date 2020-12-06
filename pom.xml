@@ -16,6 +16,7 @@
         <module>mowa-eureka</module>
         <module>mowa-common</module>
         <module>mowa-common-db</module>
+        <module>mowa-service/mowa-service-search</module>
     </modules>
 
     <parent>

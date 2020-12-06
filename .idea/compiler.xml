@@ -7,6 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="mowa-eureka" />
+        <module name="mowa-service-search-api" />
+        <module name="mowa-service-search" />
         <module name="mowa-service-content-api" />
         <module name="mowa-service-file" />
         <module name="mowa-common-db" />
@@ -30,6 +32,8 @@
       <module name="mowa-service-file" target="1.8" />
       <module name="mowa-service-goods" target="1.8" />
       <module name="mowa-service-goods-api" target="1.8" />
+      <module name="mowa-service-search" target="1.8" />
+      <module name="mowa-service-search-api" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -42,6 +46,8 @@
       <module name="mowa-service-file" options="-parameters" />
       <module name="mowa-service-goods" options="-parameters" />
       <module name="mowa-service-goods-api" options="-parameters" />
+      <module name="mowa-service-search" options="-parameters" />
+      <module name="mowa-service-search-api" options="-parameters" />
     </option>
   </component>
 </project>

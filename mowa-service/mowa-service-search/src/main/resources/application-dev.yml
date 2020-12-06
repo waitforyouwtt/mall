@@ -1,29 +1,19 @@
 #服务端口
 server:
-  port: 8003
+  port: 8004
 
 spring:
   #应用名称
   application:
-    name: content
-  #数据库连接池
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/mall_content?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
-    #COMPANY Mac
-    username: root
-    password: root123456
+    name: search
   # 格式化日期
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
 
-#mybabtis 配置
-mybatis:
-  configuration:
-    map-underscore-to-camel-case: true
-  mapper-locations: classpath*:mapper/*Mapper.xml
-  type-aliases-package: com.mowa.content.pojo
+#elasticsearch nodes 节点
+elasticsearch:
+  nodes: 192.168.31.1:9200  #,192.168.1.X2:9200,192.168.1.X3:9200
 
 #注册中心地址[多个配置中心，中间用逗号分开]
 eureka:
@@ -38,6 +28,19 @@ feign:
   hystrix:
     enabled: true
 
+#ribbon 超时时间配置
+ribbon:
+  ReadTimeout: 300000
+
+#熔断器配置
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+#打印日志配置
 logging:
   level:
     com.mowa.dao: debug

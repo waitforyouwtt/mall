@@ -142,7 +142,7 @@ public class SkuController {
      * @return
      */
     @ApiOperation(value = "查询所有Sku",notes = "查询所Sku有方法详情",tags = {"SkuController"})
-    @GetMapping
+    @GetMapping("/findAll")
     public Result<List<Sku>> findAll(){
         //调用SkuService实现查询所有Sku
         List<Sku> list = skuService.findAll();

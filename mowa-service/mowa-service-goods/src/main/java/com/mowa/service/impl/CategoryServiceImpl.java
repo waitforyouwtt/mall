@@ -5,7 +5,6 @@ import com.github.pagehelper.PageInfo;
 import com.mowa.dao.CategoryMapper;
 import com.mowa.goods.pojo.Category;
 import com.mowa.service.CategoryService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;

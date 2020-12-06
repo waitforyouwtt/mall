@@ -15,6 +15,8 @@
       <module fileurl="file://$PROJECT_DIR$/mowa-service/mowa-service-file/mowa-service-file.iml" filepath="$PROJECT_DIR$/mowa-service/mowa-service-file/mowa-service-file.iml" />
       <module fileurl="file://$PROJECT_DIR$/mowa-service/mowa-service-goods/mowa-service-goods.iml" filepath="$PROJECT_DIR$/mowa-service/mowa-service-goods/mowa-service-goods.iml" />
       <module fileurl="file://$PROJECT_DIR$/mowa-service-api/mowa-service-goods-api/mowa-service-goods-api.iml" filepath="$PROJECT_DIR$/mowa-service-api/mowa-service-goods-api/mowa-service-goods-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mowa-service/mowa-service-search/mowa-service-search.iml" filepath="$PROJECT_DIR$/mowa-service/mowa-service-search/mowa-service-search.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mowa-service-api/mowa-service-search-api/mowa-service-search-api.iml" filepath="$PROJECT_DIR$/mowa-service-api/mowa-service-search-api/mowa-service-search-api.iml" />
     </modules>
   </component>
 </project>
