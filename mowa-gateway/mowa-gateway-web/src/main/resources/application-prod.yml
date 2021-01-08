@@ -1,0 +1,64 @@
+#服务端口
+server:
+  port: 9000
+
+spring:
+  #应用名称
+  application:
+    name: mowa-gateway-web
+  #gateway跨域配置
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          #匹配所有请求
+          '[/**]':
+            #跨域处理，语序所有的域
+            allowedOrigins: "*"
+            #支持的方法
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+      #路由
+      routes:
+        #服务唯一标识
+        - id: mowa-service-goods
+          #lb:使用LoadBalancerClient 实现负载均衡,适用于集群环境，http是单机，直接指向ip的
+          uri: lb://mowa-service-goods #服务的名称
+          #uri: http://localhost:8002
+          predicates:
+            #用户请求的域名规则配置，所有以cloud.mowa.com的请求被将被路由http://localhost:8002  ，访问：http://cloud.mowa.com:8002/category/
+            #- Host=cloud.mowa.com**
+            #用户请求的域名规则配置，所有以/brand/**,/category/** 的请求都将被路由到http://localhost:8002  ，访问：访问：http://localhost:8002/category/
+            #注意：[Host & Path 而选一]
+            #- Path=/api/brand/**,/api/category/**
+            - Path=/brand/**,/category/**
+
+          #所有以/api/brand的请求，都被路由http://localhost:8002微服务
+          #希望该路径由微服务网关自动给我加上/api前缀，每次请求真实微服务网关的时候，需要使用微服务网关将/api去掉
+          filters:
+            #将请求路径中的第1个路径去掉，请求路径以/区分，一个斜杠/代表一个路径
+            #- StripPrefix=1
+            #将请求自动加一个前缀
+            - PrefixPath=/api
+
+
+
+#注册中心地址[多个配置中心，中间用逗号分开]
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8000/eureka/ # ,http://127.0.0.1:8762/eureka/
+  instance:
+    prefer-ip-address: true
+
+#启用网关
+management:
+  endpoint:
+    gateway:
+      enabled: true
+    web:
+      exposure:
+        include: true
