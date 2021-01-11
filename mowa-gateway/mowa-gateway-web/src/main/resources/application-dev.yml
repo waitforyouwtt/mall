@@ -24,9 +24,10 @@ spring:
       #路由
       routes:
         #服务唯一标识
-        - id: mowa-service-goods
+        - id: GOODS
           #lb:使用LoadBalancerClient 实现负载均衡,适用于集群环境，http是单机，直接指向ip的
-          uri: lb://mowa-service-goods #服务的名称
+          #服务的名称
+          uri: lb://GOODS
           #uri: http://localhost:8002
           predicates:
             #用户请求的域名规则配置，所有以cloud.mowa.com的请求被将被路由http://localhost:8002  ，访问：http://cloud.mowa.com:8002/category/
@@ -42,7 +43,17 @@ spring:
             #将请求路径中的第1个路径去掉，请求路径以/区分，一个斜杠/代表一个路径
             #- StripPrefix=1
             #将请求自动加一个前缀
-            - PrefixPath=/api
+            #- PrefixPath=/api
+            #请求数限流，名字不能随便写，使用默认的facatory
+            - name: RequestRateLimiter
+              args:
+                #用户身份唯一标识
+                key-resolver: "#{@ipKeyResolver}"
+                #每秒钟只允许有一个请求
+                redis-rate-limiter.replenishRate: 1
+                #允许并发有4个请求
+                redis-rate-limiter.burstCapacity: 4
+                #访问请求地址：http://localhost:9000/category
 
 
 
