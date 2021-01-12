@@ -19,6 +19,7 @@
         <module>mowa-service-goods-api</module>
         <module>mowa-service-content-api</module>
         <module>mowa-service-search-api</module>
+        <module>mowa-service-user-api</module>
     </modules>
 
     <dependencies>
