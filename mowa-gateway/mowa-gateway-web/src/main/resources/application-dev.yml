@@ -54,7 +54,10 @@ spring:
                 #允许并发有4个请求
                 redis-rate-limiter.burstCapacity: 4
                 #访问请求地址：http://localhost:9000/category
-
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
 
 
 #注册中心地址[多个配置中心，中间用逗号分开]
