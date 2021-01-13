@@ -54,6 +54,12 @@ spring:
                 #允许并发有4个请求
                 redis-rate-limiter.burstCapacity: 4
                 #访问请求地址：http://localhost:9000/category
+
+        - id : USER
+          uri: lb://USER
+          predicates:
+            - Path=/user/**
+
   redis:
     host: 127.0.0.1
     port: 6379

@@ -216,4 +216,11 @@ public class UserInfoServiceImpl implements UserInfoService {
     public List<UserInfo> findAll() {
         return userMapper.selectAll();
     }
+
+    @Override
+    public UserInfo findByUserName(String userName){
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUsername( userName );
+        return userMapper.selectOne( userInfo );
+    }
 }

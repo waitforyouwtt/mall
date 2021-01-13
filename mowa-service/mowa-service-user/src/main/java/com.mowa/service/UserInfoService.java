@@ -67,4 +67,11 @@ public interface UserInfoService {
      * @return
      */
     List<UserInfo> findAll();
+
+    /**
+     * 用户登录
+     * @param username
+     * @return
+     */
+    UserInfo findByUserName(String username);
 }
