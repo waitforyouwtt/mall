@@ -7,6 +7,7 @@ import com.mowa.enums.StatusCodeEnum;
 import com.mowa.service.UserInfoService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -145,5 +146,18 @@ public class UserInfoController {
         //调用UserService实现查询所有User
         List<UserInfo> list = userService.findAll();
         return new Result<List<UserInfo>>(true, StatusCodeEnum.SUCCESS.getCode(),"查询成功",list) ;
+    }
+
+    @ApiOperation( value = "用户登录" ,notes = "用户登录",tags = {"UserController"})
+    @GetMapping("/login")
+    public Result login(@RequestParam("username") String username,@RequestParam("password") String password){
+      UserInfo userInfo = userService.findByUserName(username);
+      /*if (BCrypt.checkpw( password,userInfo.getPassword() )){
+        return Result.success( userInfo );
+      }*/
+      if (password.equals( userInfo.getPassword() )){
+          return Result.success( userInfo );
+      }
+      return Result.error( "用户名或密码错误" );
     }
 }
