@@ -41,3 +41,13 @@ feign:
 logging:
   level:
     com.mowa.dao: debug
+
+#业务相关的配置
+mowa:
+  jwt:
+    #jwt token过期: 1000毫秒*60秒*60分钟【1小时】
+    token:
+      expiration:
+        time: 3600000
+    security: 0987654321-+=,.
+
