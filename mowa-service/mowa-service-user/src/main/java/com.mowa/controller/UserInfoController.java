@@ -1,6 +1,8 @@
 package com.mowa.controller;
 
+import cn.hutool.json.JSONUtil;
 import com.github.pagehelper.PageInfo;
+import com.mowa.JwtUtil;
 import com.mowa.Result;
 import com.mowa.user.pojo.UserInfo;
 import com.mowa.enums.StatusCodeEnum;
@@ -10,7 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 
 /**
@@ -150,13 +157,37 @@ public class UserInfoController {
 
     @ApiOperation( value = "用户登录" ,notes = "用户登录",tags = {"UserController"})
     @GetMapping("/login")
-    public Result login(@RequestParam("username") String username,@RequestParam("password") String password){
+    public Result login(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletResponse response){
       UserInfo userInfo = userService.findByUserName(username);
+        //创建令牌信息
       /*if (BCrypt.checkpw( password,userInfo.getPassword() )){
-        return Result.success( userInfo );
+          Map<String,Object> tokenMap = new HashMap<>();
+          tokenMap.put("role","USER");
+          tokenMap.put("success","SUCCESS");
+          tokenMap.put("username",username);
+
+          String token = JwtUtil.createJWT(UUID.randomUUID().toString(), JSONUtil.toJsonStr(tokenMap),null);
+          //把令牌信息存入到cookie
+          Cookie cookie = new Cookie("Authorization",token);
+          cookie.setDomain("localhost");
+          cookie.setPath("/");
+          response.addCookie(cookie);
+          return Result.success( token );
       }*/
       if (password.equals( userInfo.getPassword() )){
-          return Result.success( userInfo );
+
+          //创建令牌信息
+          Map<String,Object> tokenMap = new HashMap<>();
+          tokenMap.put("role","USER");
+          tokenMap.put("success","SUCCESS");
+          tokenMap.put("username",username);
+
+          String token = JwtUtil.createJWT(UUID.randomUUID().toString(), JSONUtil.toJsonStr(tokenMap),null);
+          //把令牌信息存入到cookie
+          Cookie cookie = new Cookie("Authorization",token);
+          cookie.setDomain("localhost");
+          cookie.setPath("/");
+          response.addCookie(cookie);return Result.success( token );
       }
       return Result.error( "用户名或密码错误" );
     }
