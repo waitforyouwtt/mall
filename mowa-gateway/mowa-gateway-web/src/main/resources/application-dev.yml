@@ -59,7 +59,7 @@ spring:
           uri: lb://USER
           predicates:
             - Path=/user/**
-          #  访问请求地址：http://localhost:9000/user/login?name=yunlan&password=12
+          #  访问请求地址：http://localhost:8004/user/login?username=%E4%BA%91%E6%BE%9C&password=12
 
   redis:
     host: 127.0.0.1
