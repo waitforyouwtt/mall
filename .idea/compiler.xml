@@ -6,16 +6,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="mowa-eureka" />
-        <module name="mowa-service-search-api" />
-        <module name="mowa-service-search" />
-        <module name="mowa-service-content-api" />
         <module name="mowa-service-file" />
-        <module name="mowa-common-db" />
         <module name="mowa-service-content" />
         <module name="mowa-service-goods" />
-        <module name="mowa-common" />
+        <module name="mowa-eureka" />
+        <module name="mowa-service-content-api" />
+        <module name="mowa-common-db" />
+        <module name="mowa-service-search-api" />
+        <module name="mowa-service-user-api" />
+        <module name="mowa-service-search" />
         <module name="mowa-service-goods-api" />
+        <module name="mowa-user-oauth" />
+        <module name="mowa-gateway-web" />
+        <module name="mowa-service-user" />
+        <module name="mowa-common" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -25,6 +29,7 @@
       <module name="mowa-common-db" target="1.8" />
       <module name="mowa-eureka" target="1.8" />
       <module name="mowa-gateway" target="1.8" />
+      <module name="mowa-gateway-web" target="1.8" />
       <module name="mowa-service" target="1.8" />
       <module name="mowa-service-api" target="1.8" />
       <module name="mowa-service-content" target="1.8" />
@@ -34,6 +39,9 @@
       <module name="mowa-service-goods-api" target="1.8" />
       <module name="mowa-service-search" target="1.8" />
       <module name="mowa-service-search-api" target="1.8" />
+      <module name="mowa-service-user" target="1.8" />
+      <module name="mowa-service-user-api" target="1.8" />
+      <module name="mowa-user-oauth" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -41,6 +49,7 @@
       <module name="mowa-common" options="-parameters" />
       <module name="mowa-common-db" options="-parameters" />
       <module name="mowa-eureka" options="-parameters" />
+      <module name="mowa-gateway-web" options="-parameters" />
       <module name="mowa-service-content" options="-parameters" />
       <module name="mowa-service-content-api" options="-parameters" />
       <module name="mowa-service-file" options="-parameters" />
@@ -48,6 +57,9 @@
       <module name="mowa-service-goods-api" options="-parameters" />
       <module name="mowa-service-search" options="-parameters" />
       <module name="mowa-service-search-api" options="-parameters" />
+      <module name="mowa-service-user" options="-parameters" />
+      <module name="mowa-service-user-api" options="-parameters" />
+      <module name="mowa-user-oauth" options="-parameters" />
     </option>
   </component>
 </project>

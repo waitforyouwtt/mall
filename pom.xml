@@ -17,6 +17,7 @@
         <module>mowa-common</module>
         <module>mowa-common-db</module>
         <module>mowa-service/mowa-service-search</module>
+        <module>mowa-user-oauth</module>
     </modules>
 
     <parent>

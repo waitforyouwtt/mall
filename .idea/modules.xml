@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/mowa-common-db/mowa-common-db.iml" filepath="$PROJECT_DIR$/mowa-common-db/mowa-common-db.iml" />
       <module fileurl="file://$PROJECT_DIR$/mowa-eureka/mowa-eureka.iml" filepath="$PROJECT_DIR$/mowa-eureka/mowa-eureka.iml" />
       <module fileurl="file://$PROJECT_DIR$/mowa-gateway/mowa-gateway.iml" filepath="$PROJECT_DIR$/mowa-gateway/mowa-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mowa-gateway/mowa-gateway-web/mowa-gateway-web.iml" filepath="$PROJECT_DIR$/mowa-gateway/mowa-gateway-web/mowa-gateway-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/mowa-service/mowa-service.iml" filepath="$PROJECT_DIR$/mowa-service/mowa-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/mowa-service-api/mowa-service-api.iml" filepath="$PROJECT_DIR$/mowa-service-api/mowa-service-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/mowa-service/mowa-service-content/mowa-service-content.iml" filepath="$PROJECT_DIR$/mowa-service/mowa-service-content/mowa-service-content.iml" />
@@ -17,6 +18,9 @@
       <module fileurl="file://$PROJECT_DIR$/mowa-service-api/mowa-service-goods-api/mowa-service-goods-api.iml" filepath="$PROJECT_DIR$/mowa-service-api/mowa-service-goods-api/mowa-service-goods-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/mowa-service/mowa-service-search/mowa-service-search.iml" filepath="$PROJECT_DIR$/mowa-service/mowa-service-search/mowa-service-search.iml" />
       <module fileurl="file://$PROJECT_DIR$/mowa-service-api/mowa-service-search-api/mowa-service-search-api.iml" filepath="$PROJECT_DIR$/mowa-service-api/mowa-service-search-api/mowa-service-search-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mowa-service/mowa-service-user/mowa-service-user.iml" filepath="$PROJECT_DIR$/mowa-service/mowa-service-user/mowa-service-user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mowa-service-api/mowa-service-user-api/mowa-service-user-api.iml" filepath="$PROJECT_DIR$/mowa-service-api/mowa-service-user-api/mowa-service-user-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mowa-user-oauth/mowa-user-oauth.iml" filepath="$PROJECT_DIR$/mowa-user-oauth/mowa-user-oauth.iml" />
     </modules>
   </component>
 </project>
