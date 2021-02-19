@@ -191,4 +191,10 @@ public class UserInfoController {
       }
       return Result.error( "用户名或密码错误" );
     }
+
+    @ApiOperation( value = "根据用户名获取用户信息" ,notes = "根据用户名获取用户信息",tags = {"UserController"})
+    @GetMapping("/findByUserName")
+    public Result<UserInfo> findByUserName(@RequestParam("userName") String userName){
+        return Result.success(this.userService.findByUserName(userName));
+    }
 }
