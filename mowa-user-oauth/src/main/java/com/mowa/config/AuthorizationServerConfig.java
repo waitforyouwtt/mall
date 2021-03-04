@@ -146,7 +146,4 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         accessTokenConverter.setUserTokenConverter(customUserAuthenticationConverter);
         return converter;
     }
-
-
-
 }
