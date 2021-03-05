@@ -1,8 +1,10 @@
 package com.mowa.service;
 
-import java.util.Map;
+import com.mowa.util.AuthToken;
 
-public interface LoginService {
+
+
+public interface OauthService {
 
     /**
      * 模拟用户的行为 发送请求 申请令牌 返回
@@ -13,5 +15,5 @@ public interface LoginService {
      * @param grantType
      * @return
      */
-    Map login(String username, String password, String clientId, String clientSecret, String grantType);
+    AuthToken login(String username, String password, String clientId, String clientSecret, String grantType);
 }

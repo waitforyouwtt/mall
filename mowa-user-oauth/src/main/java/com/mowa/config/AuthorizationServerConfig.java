@@ -51,13 +51,18 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private CustomUserAuthenticationConverter customUserAuthenticationConverter;
 
 
+    /***
+     * 客户端信息配置
+     * @param clients
+     * @throws Exception
+     */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
        clients.inMemory()
                //客户端id
-               .withClient( "mowa" )
+               .withClient( "mowa666" )
                //密钥
-               .secret( "mowa" )
+               .secret( "mowa666" )
                //重定向地址
                .redirectUris( "http://localhost" )
                //访问令牌有效期
