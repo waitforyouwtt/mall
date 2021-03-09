@@ -17,6 +17,8 @@ keytool 是一个Java提供的证书管理工具：
 导出公钥：openssl 是一个加解密工具包，使用openssl 来导出公钥信息
 安装：openssl:http://slproweb.com/products/Win32OpenSSL.html
 
+提取公钥命令： keytool -list -rfc --keystore mowa666.jks | openssl x509 -inform pem -pubkey
+
 
 
 Oauth2授权模式：

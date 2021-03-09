@@ -8,11 +8,10 @@ import com.mowa.util.CookieUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
@@ -40,7 +39,8 @@ public class AuthController {
     private int cookieMaxAge;
 
     @GetMapping("/toLogin")
-    public String toLogin(){
+    public String toLogin(@RequestParam(value = "FROM",required = false,defaultValue = "") String from, Model model){
+        model.addAttribute("from",from);
         return "login";
     }
 
@@ -52,16 +52,16 @@ public class AuthController {
      * @return
      */
     @RequestMapping("/login")
-    public Result<Map> login(String username, String password,HttpServletResponse response) throws Exception {
+    public Result<Map> login(String username, String password, HttpServletResponse response) throws Exception {
         //登录 之后生成令牌的数据返回
         AuthToken token = loginService.login(username, password, clientId, clientSecret, GRANT_TYPE);
         //将jti的值存入cookie中
         this.saveJtiToCookie(token.getJti(),response);
-        return new Result(true, StatusCodeEnum.SUCCESS.getCode(), "令牌生成成功",token);
+        return new Result(true, StatusCodeEnum.SUCCESS.getCode(), "令牌生成成功",token.getJti());
     }
 
-    private void saveJtiToCookie(String token,HttpServletResponse response){
+    private void saveJtiToCookie(String jti,HttpServletResponse response){
         //HttpServletResponse response = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
-        CookieUtil.addCookie(response,cookieDomain,"/","Authorization",token,cookieMaxAge,false);
+        CookieUtil.addCookie(response,cookieDomain,"/","Authorization",jti,cookieMaxAge,false);
     }
 }

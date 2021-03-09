@@ -48,9 +48,9 @@ public class OauthServiceImpl implements OauthService {
         body.add("grant_type", grantType);
         //请求头
         MultiValueMap<String, String> header = new LinkedMultiValueMap<>();
-        /*String authorization = "Basic " +
-                new String(Base64.getEncoder().encode((clientId + ":" + clientSecret).getBytes()));*/
-        String authorization = getHttpBasic( clientId,clientSecret );
+        String authorization = "Basic " +
+                new String(Base64.getEncoder().encode((clientId + ":" + clientSecret).getBytes()));
+       // String authorization = getHttpBasic( clientId,clientSecret );
         header.add("Authorization", authorization);
         HttpEntity<MultiValueMap<String,String>> httpEntity = new HttpEntity(body, header);
 
