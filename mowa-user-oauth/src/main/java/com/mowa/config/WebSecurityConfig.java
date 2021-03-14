@@ -65,7 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated();
 
         //开启表单登录
-        http.formLogin().loginPage("/oauth/toLogin")//设置访问登录页面的路径
-                .loginProcessingUrl("/oauth/login");//设置执行登录操作的路径
+       // http.formLogin().loginPage("/oauth/toLogin")//设置访问登录页面的路径
+       //         .loginProcessingUrl("/oauth/login");//设置执行登录操作的路径
     }
 }

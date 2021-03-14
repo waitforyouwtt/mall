@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.stereotype.Service;
@@ -53,11 +54,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 //静态方式
                 //return new User(username,new BCryptPasswordEncoder().encode(clientSecret), AuthorityUtils.commaSeparatedStringToAuthorityList(""));
                 //数据库查找方式
-                return new User(username,clientSecret, AuthorityUtils.commaSeparatedStringToAuthorityList(""));
+                return new User(username,new BCryptPasswordEncoder().encode(clientSecret), AuthorityUtils.commaSeparatedStringToAuthorityList(""));
             }
         }
         Result remote = userFeign.findByUserName(username);
-        if (remote.getCode() != 200){
+        if (remote.getCode() != 20000){
             return null;
         }
         UserInfo userInfo = (UserInfo) remote.getData();
@@ -67,7 +68,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         String pwd = userInfo.getPassword();
         //创建User对象
         String permissions = "USER";
-        UserJwt userDetails = new UserJwt(username,pwd,AuthorityUtils.commaSeparatedStringToAuthorityList(permissions));
+        UserJwt userDetails = new UserJwt(username,new BCryptPasswordEncoder().encode(pwd),AuthorityUtils.commaSeparatedStringToAuthorityList(permissions));
         return userDetails;
     }
 }

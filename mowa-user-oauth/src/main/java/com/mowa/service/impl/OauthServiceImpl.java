@@ -5,6 +5,7 @@ import com.mowa.util.AuthToken;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.HttpEntity;
@@ -19,6 +20,7 @@ import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.net.URI;
 import java.util.Base64;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -40,6 +42,9 @@ public class OauthServiceImpl implements OauthService {
 
     @Override
     public AuthToken login(String username, String password, String clientId, String clientSecret, String grantType) {
+        /*ServiceInstance serviceInstance = loadBalancerClient.choose("user-auth");
+        URI uri = serviceInstance.getUri();
+        String url=uri+"/oauth/token";*/
         String url = loadBalancerClient.choose("user-auth").getUri() + "/oauth/token/";
         //请求体
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
@@ -48,9 +53,9 @@ public class OauthServiceImpl implements OauthService {
         body.add("grant_type", grantType);
         //请求头
         MultiValueMap<String, String> header = new LinkedMultiValueMap<>();
-        String authorization = "Basic " +
-                new String(Base64.getEncoder().encode((clientId + ":" + clientSecret).getBytes()));
-       // String authorization = getHttpBasic( clientId,clientSecret );
+        /*String authorization = "Basic " +
+                new String( Base64.getEncoder().encode((clientId + ":" + clientSecret).getBytes()));*/
+        String authorization = getHttpBasic( clientId,clientSecret );
         header.add("Authorization", authorization);
         HttpEntity<MultiValueMap<String,String>> httpEntity = new HttpEntity(body, header);
 

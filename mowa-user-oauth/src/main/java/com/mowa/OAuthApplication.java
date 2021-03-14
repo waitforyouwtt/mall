@@ -16,8 +16,8 @@ public class OAuthApplication {
         SpringApplication.run(OAuthApplication.class,args);
     }
 
-    @Bean(name = "restTemplate")
-    public RestTemplate restTemplate() {
+    @Bean
+    public RestTemplate restTemplate(){
         return new RestTemplate();
     }
 

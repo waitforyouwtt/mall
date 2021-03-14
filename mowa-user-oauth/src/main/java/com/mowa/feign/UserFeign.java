@@ -11,6 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 //@FeignClient(name = "user",  fallback = UserFeignRollBack.class,url = "${user-url}")
 public interface UserFeign {
 
-    @GetMapping("/findByUserName")
+    @GetMapping("user/findByUserName")
     Result<UserInfo> findByUserName(@RequestParam("userName") String userName);
 }
