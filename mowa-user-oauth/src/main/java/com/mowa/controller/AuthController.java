@@ -54,7 +54,7 @@ public class AuthController {
     @RequestMapping("/login")
     public Result<Map> login(String username, String password, HttpServletResponse response) throws Exception {
         //登录 之后生成令牌的数据返回
-        AuthToken token = oauthService.login(username, password, clientId, clientSecret, GRANT_TYPE);
+        AuthToken token = oauthService.login(username, password, clientId, clientSecret, "authorization_code");
         //将jti的值存入cookie中
         this.saveJtiToCookie(token.getJti(),response);
         return new Result(true, StatusCodeEnum.SUCCESS.getCode(), "令牌生成成功",token.getJti());

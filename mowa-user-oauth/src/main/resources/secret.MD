@@ -29,7 +29,12 @@ Oauth2授权模式：
 
 
 申请授权码(请求认证服务获取授权码)：
-http://localhost:9001/oauth/authorize?client_id=mowa666&response_type=code&scop=app&redirect_uri=http://localhost
+【get 请求】 http://localhost:9001/oauth/authorize?client_id=mowa666&response_type=code&scop=app&c=http://localhost
+【post请求】 http://localhost:9001/oauth/token
+ grant_type：authorization_code[固定的]
+ code：yuMeJc
+ redirect_uri：http://localhost[跳转的地址]
+
 
 
 client_id: 客户端id,和授权配置类中设置的客户端id一致。
