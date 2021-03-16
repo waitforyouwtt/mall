@@ -42,3 +42,5 @@ response_type:授权码模式固定为code。
 scop:客户端范围，和授权配置类中设置的scop一致。
 redirect_uri:跳转uri,当授权码申请成功后会跳转到此地址，并在后边带上code参数(授权码)
 
+启动redis.server 闪退 解决方案：cmd-> cd c:\\tools\\redistool +enter redis-server.exe redis.windows.conf +enter
+
