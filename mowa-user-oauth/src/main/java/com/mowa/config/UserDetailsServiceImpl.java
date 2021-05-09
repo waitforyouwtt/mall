@@ -37,6 +37,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆客户端认证开始☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
+
         /*用户信息认证*/
         if (StringUtils.isBlank(username)){
             return null;
@@ -48,15 +50,31 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         //没有认证统一采用httpbasic认证，httpbasic中存储了client_id和client_secret，开始认证client_id和client_secret
         if (authentication == null){
             ClientDetails clientDetails = clientDetailsService.loadClientByClientId(username);
-            if (clientDetails != null){
-                //秘钥
-                String clientSecret = clientDetails.getClientSecret();
-                //静态方式
-                //return new User(username,new BCryptPasswordEncoder().encode(clientSecret), AuthorityUtils.commaSeparatedStringToAuthorityList(""));
+            if (clientDetails == null){
+                return null;
+            }else{
+                //静态方式：
+                /*return new User(
+                        //客户端id
+                        username,
+                        //客户端密钥
+                        new BCryptPasswordEncoder().encode(clientDetails.getClientSecret()),
+                        //客户端权限
+                        AuthorityUtils.commaSeparatedStringToAuthorityList("")
+                );*/
                 //数据库查找方式
-                return new User(username,new BCryptPasswordEncoder().encode(clientSecret), AuthorityUtils.commaSeparatedStringToAuthorityList(""));
+                return new User(
+                        //客户端id
+                        username,
+                        //客户端密钥
+                        new BCryptPasswordEncoder().encode(clientDetails.getClientSecret()),
+                        //客户端权限
+                        AuthorityUtils.commaSeparatedStringToAuthorityList("")
+                );
             }
         }
+        //☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆客户端认证结束☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
+        //-----------------------------------用户认证开始--------------------------------------------------
         Result remote = userFeign.findByUserName(username);
         if (remote.getCode() != 20000){
             return null;
@@ -66,9 +84,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             return null;
         }
         String pwd = userInfo.getPassword();
+        //用户的角色信息
+        String permissions = "admin,user";
         //创建User对象
-        String permissions = "USER";
         UserJwt userDetails = new UserJwt(username,new BCryptPasswordEncoder().encode(pwd),AuthorityUtils.commaSeparatedStringToAuthorityList(permissions));
         return userDetails;
+        //-----------------------------------用户认证结束--------------------------------------------------
     }
 }

@@ -58,7 +58,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-       clients.inMemory()
+        //从数据库加载客户端信息
+        clients.jdbc(dataSource).clients(clientDetails());
+
+       /*clients.inMemory()
                //客户端id
                .withClient( "mowa666" )
                //密钥
@@ -66,9 +69,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                //重定向地址
                .redirectUris( "http://localhost" )
                //访问令牌有效期
-               .accessTokenValiditySeconds( 60 )
+               .accessTokenValiditySeconds( 120 )
                //刷新令牌有效期
-               .refreshTokenValiditySeconds( 60 )
+               .refreshTokenValiditySeconds( 120 )
                .authorizedGrantTypes(
                        //根据授权码生成令牌
                        "authorization_code",
@@ -78,7 +81,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                        "refresh_token",
                        //密码方式认证
                        "password"
-               ).scopes( "app" ); //客户端范围，名称自定义，但必填
+               ).scopes( "app" ); //客户端范围，名称自定义，但必填*/
     }
 
     /**

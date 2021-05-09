@@ -28,6 +28,12 @@
             <artifactId>mowa-common-db</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-oauth2</artifactId>
+            <version>2.1.2.RELEASE</version>
+        </dependency>
     </dependencies>
 
 

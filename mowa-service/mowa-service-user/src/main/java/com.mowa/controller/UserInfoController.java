@@ -9,9 +9,8 @@ import com.mowa.enums.StatusCodeEnum;
 import com.mowa.service.UserInfoService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
@@ -147,6 +146,7 @@ public class UserInfoController {
      * 查询User全部数据
      * @return
      */
+    @PreAuthorize( "hasAnyRole('admin','user')" )
     @ApiOperation(value = "查询所有User",notes = "查询所User有方法详情",tags = {"UserController"})
     @GetMapping
     public Result<List<UserInfo>> findAll(){
