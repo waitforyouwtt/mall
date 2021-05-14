@@ -45,7 +45,7 @@ public class AuthorizeFilter implements GlobalFilter, Ordered {
                 token = httpCookie.getValue();
             }
         }
-        //如果没有令牌，则拦击
+       /* //如果没有令牌，则拦击
         if (StringUtils.isBlank(token)){
             //设置状态码
             response.setStatusCode(HttpStatus.UNAUTHORIZED);
@@ -62,7 +62,21 @@ public class AuthorizeFilter implements GlobalFilter, Ordered {
             return response.setComplete();
         }
         //将令牌封装到Header中，再传递给其他微服务
-        request.mutate().header( AUTHORIZE_TOKEN,token );
+        request.mutate().header( AUTHORIZE_TOKEN,token );*/
+        if (StringUtils.isBlank(token)){
+            //设置状态码
+            response.setStatusCode(HttpStatus.UNAUTHORIZED);
+            //相应空数据
+            return response.setComplete();
+        }else{
+            if (!hasToken){
+                if (!token.startsWith( "bearer " ) && ! token.startsWith( "Bearer" )){
+                    token = "bearer "+token;
+                }
+                //将令牌封装到头文件中
+                request.mutate().header( AUTHORIZE_TOKEN,token );
+            }
+        }
         return chain.filter(exchange);
     }
 

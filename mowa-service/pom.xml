@@ -20,6 +20,7 @@
         <module>mowa-service-file</module>
         <module>mowa-service-content</module>
         <module>mowa-service-user</module>
+        <module>mowa-service-order</module>
     </modules>
 
     <dependencies>
